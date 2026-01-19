@@ -85,9 +85,11 @@ NSArray<RTC_OBJC_TYPE(RTCVideoCodecInfo) *>* motifyH264ProfileLevelId(
 }
 @end
 
-void postEvent(FlutterEventSink _Nonnull sink, id _Nullable event) {
+void postEvent(FlutterEventSink _Nullable sink, id _Nullable event) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      sink(event);
+      if (sink != nil) {
+        sink(event);
+      }
     });
 }
 
